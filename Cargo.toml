@@ -55,6 +55,10 @@ version = "1.1"
 version = "0.3.2"
 optional = true
 
+[dependencies.stm32-usbd]
+version = "0.6.0"
+optional = true
+
 [dev-dependencies]
 cortex-m-rt = "0.7.2"
 defmt-rtt = "0.4.0"
@@ -71,20 +75,22 @@ cfg-if = "0.1.10"
 mpu6050 = "0.1.4"
 bme680 = "0.6.0"
 embedded-sdmmc = "0.3.0"
+usb-device = "0.2.8"
+usbd-serial = "0.1.1"
 
 #TODO: Separate feature sets
 [features]
 default = ["rt"]
 rt = ["stm32g4/rt"]
-stm32g431 = ["stm32g4/stm32g431"]
-stm32g441 = ["stm32g4/stm32g441"]
-stm32g471 = ["stm32g4/stm32g471"]
-stm32g473 = ["stm32g4/stm32g473"]
-stm32g474 = ["stm32g4/stm32g474"]
-stm32g483 = ["stm32g4/stm32g483"]
-stm32g484 = ["stm32g4/stm32g484"]
-stm32g491 = ["stm32g4/stm32g491"]
-stm32g4a1 = ["stm32g4/stm32g4a1"]
+stm32g431 = ["stm32g4/stm32g431", "stm32-usbd"]
+stm32g441 = ["stm32g4/stm32g441", "stm32-usbd"]
+stm32g471 = ["stm32g4/stm32g471", "stm32-usbd"]
+stm32g473 = ["stm32g4/stm32g473", "stm32-usbd"]
+stm32g474 = ["stm32g4/stm32g474", "stm32-usbd"]
+stm32g483 = ["stm32g4/stm32g483", "stm32-usbd"]
+stm32g484 = ["stm32g4/stm32g484", "stm32-usbd"]
+stm32g491 = ["stm32g4/stm32g491", "stm32-usbd"]
+stm32g4a1 = ["stm32g4/stm32g4a1", "stm32-usbd"]
 log-itm = ["cortex-m-log/itm"]
 log-rtt = []
 log-semihost = ["cortex-m-log/semihosting"]

@@ -5,9 +5,11 @@ use crate::time::{Hertz, RateExtU32};
 mod clockout;
 mod config;
 mod enable;
+mod crs;
 
 pub use clockout::*;
 pub use config::*;
+pub use crs::*;
 
 pub trait Instance: crate::Sealed + Enable + Reset + GetBusFreq {}
 
@@ -438,6 +440,11 @@ impl Rcc {
     pub(crate) fn enable_lsi(&self) {
         self.rb.csr.modify(|_, w| w.lsion().set_bit());
         while self.rb.csr.read().lsirdy().bit_is_clear() {}
+    }
+
+    pub(crate) fn enable_hsi48(&self) {
+        self.rb.crrcr.modify(|_, w| w.hsi48on().set_bit());
+        while self.rb.crrcr.read().hsi48rdy().bit_is_clear() {}
     }
 
     pub fn get_reset_reason(&self) -> ResetReason {
