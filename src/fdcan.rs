@@ -1740,7 +1740,7 @@ mod impls {
         }
 
         unsafe impl message_ram::MsgRamExt for FDCAN2 {
-            const MSG_RAM: *mut message_ram::RegisterBlock = (0x4000_a400 as *mut _);
+            const MSG_RAM: *mut message_ram::RegisterBlock = (0x4000_a750 as *mut _);
         }
     }
 
